@@ -6,6 +6,8 @@
     </style>
 
     <style name="SplashScreenTheme" parent="AppTheme">
-        <item name="background">@drawable/splash_screen_background</item>
+        <item name="android:navigationBarColor">@color/colorAppBackground</item>
+        <item name="android:statusBarColor">@color/colorAppBackground</item>
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 </resources>
