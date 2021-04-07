@@ -2,11 +2,16 @@ package com.matheus.testioasys.data.repository
 
 import com.matheus.testioasys.data.model.UserAuthData
 
-interface UserAuthRepository {
+class UserAuthRepository(
+    private val remoteProvider: RemoteAuthProvider,
+    private val localProvider: LocalAuthProvider
+) : AuthRepository {
 
-    suspend fun auth(email: String, password: String): UserAuthData
+    override suspend fun auth(email: String, password: String): UserAuthData =
+        remoteProvider.auth(email, password)
 
-    suspend fun saveAuthData(userAuthData: UserAuthData)
+    override suspend fun saveAuthData(userAuthData: UserAuthData) =
+        localProvider.saveAuthData(userAuthData)
 
-    suspend fun loadAuthData(): UserAuthData?
+    override suspend fun loadAuthData(): UserAuthData? = localProvider.loadAuthData()
 }
