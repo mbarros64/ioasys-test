@@ -6,4 +6,5 @@ object APIConstants {
     const val ACCESS_TOKEN_KEY = "access-token"
     const val UID_KEY = "uid"
     const val CLIENT_KEY = "client"
+    const val EXPIRY_KEY = "expiry"
 }

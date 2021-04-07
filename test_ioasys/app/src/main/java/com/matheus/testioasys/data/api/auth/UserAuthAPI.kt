@@ -19,7 +19,7 @@ class UserAuthAPI : UserAuth {
         .build()
         .create(UserAuthService::class.java)
 
-    override suspend fun doAuth(email: String, password: String): UserAuthData? =
+    override suspend fun doAuth(email: String, password: String): UserAuthData =
         withContext(Dispatchers.IO) {
             val response = userAuthService.signIn(AuthBodyRequest(email, password))
             val authResponse = response.body() ?: run {
@@ -36,8 +36,11 @@ class UserAuthAPI : UserAuth {
                 val client = response.headers().get(APIConstants.CLIENT_KEY) ?: run {
                     throw AuthException.DefaultAuthException()
                 }
+                val expiry = response.headers().get(APIConstants.EXPIRY_KEY)?.toLong() ?: run {
+                    throw AuthException.DefaultAuthException()
+                }
 
-                UserAuthData(accessToken, client, uid)
+                UserAuthData(accessToken, client, uid, expiry)
             } else {
                 throw AuthException.InvalidCredentialsException(authResponse.errors?.firstOrNull())
             }
