@@ -7,7 +7,11 @@
     <color name="colorWindowControlsContrastBackground">#B3000000</color>
     <color name="colorPrimaryText">#403e4d</color>
     <color name="colorSecondaryText">#383743</color>
+    <color name="colorTertiaryText">#acabab</color>
     <color name="colorRedAlert">#ff0f44</color>
     <color name="colorButtonDisabled">#748383</color>
     <color name="colorBlurOverlay">#99ffffff</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorEnterpriseName">#1a0e49</color>
+    <color name="colorEnterpriseType">#8d8c8c</color>
 </resources>
