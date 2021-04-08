@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.matheus.testioasys.databinding.ActivitySplashScreenBinding
 import com.matheus.testioasys.extensions.setTranslucentWindowControls
 import com.matheus.testioasys.extensions.setupFullScreenSystemUiFlags
+import com.matheus.testioasys.ui.main.MainActivity
 import com.matheus.testioasys.ui.signin.SignInActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: ActivitySplashScreenBinding
+
+    private val viewModel: SplashScreenViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +24,24 @@ class SplashScreenActivity : AppCompatActivity() {
         setupFullScreenSystemUiFlags()
         setTranslucentWindowControls(true, true)
         viewBinding.root.postDelayed({
-            startActivity(Intent(this, SignInActivity::class.java))
+            startApp()
         }, START_DELAY)
+    }
+
+    private fun startApp() {
+        viewModel.checkCurrentAuthentication(::onSuccessAuth, ::onFailureAuth)
+    }
+
+    private fun onSuccessAuth() {
+        startScreen(MainActivity::class.java)
+    }
+
+    private fun onFailureAuth() {
+        startScreen(SignInActivity::class.java)
+    }
+
+    private fun <T> startScreen(className: Class<T>) {
+        startActivity(Intent(this, className))
     }
 
     companion object {
