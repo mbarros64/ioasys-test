@@ -1,4 +1,4 @@
-package com.matheus.testioasys.data.repository
+package com.matheus.testioasys.data.repository.auth
 
 import com.matheus.testioasys.data.model.UserAuthData
 

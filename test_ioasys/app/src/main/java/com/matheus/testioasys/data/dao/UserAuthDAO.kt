@@ -4,7 +4,6 @@ import com.matheus.testioasys.data.model.UserAuthData
 
 interface UserAuthDAO {
 
-    suspend fun getUserAuthData(): UserAuthData?
+    fun getUserAuthData(): UserAuthData?
 
-    suspend fun saveUserAuthData(userAuthData: UserAuthData)
-}
+    fun saveUserAuthData(userAuthData: UserAuthData)}

@@ -25,9 +25,9 @@ class UserSharedPreferences(context: Context): UserAuthDAO {
         private const val AUTH_DATA_KEY = "auth_data"
     }
 
-    override suspend fun getUserAuthData(): UserAuthData? = authData
+    override fun getUserAuthData(): UserAuthData? = authData
 
-    override suspend fun saveUserAuthData(userAuthData: UserAuthData) {
+    override fun saveUserAuthData(userAuthData: UserAuthData) {
         authData = userAuthData
     }
 }

@@ -9,5 +9,5 @@ interface AuthRepository {
 
     suspend fun saveAuthData(userAuthData: UserAuthData)
 
-    suspend fun loadAuthData(): UserAuthData?
+    fun loadAuthData(): UserAuthData?
 }
