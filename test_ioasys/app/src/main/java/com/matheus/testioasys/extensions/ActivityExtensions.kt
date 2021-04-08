@@ -6,6 +6,7 @@ import android.os.Build
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.ColorInt
 
 fun Activity.setupFullScreenSystemUiFlags() {
     window.decorView.apply {
@@ -13,7 +14,6 @@ fun Activity.setupFullScreenSystemUiFlags() {
                 systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
 
-    window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 }
 
 fun Activity.setStatusBarColor(color: Int, withLightStatusBar: Boolean = false) {
@@ -45,12 +45,14 @@ fun Activity.setNavigationBarColor(color: Int, withLightNavigationBar: Boolean =
 }
 
 fun Activity.setTranslucentWindowControls(
+        @ColorInt statusBarColor: Int = Color.TRANSPARENT,
+        @ColorInt navigationBarColor: Int = Color.TRANSPARENT,
         withLightStatusBar: Boolean = false,
         withLightNavigationBar: Boolean = false
 ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        setStatusBarColor(Color.TRANSPARENT, withLightStatusBar)
-        setNavigationBarColor(Color.TRANSPARENT, withLightNavigationBar)
+        setStatusBarColor(statusBarColor, withLightStatusBar)
+        setNavigationBarColor(navigationBarColor, withLightNavigationBar)
     } else {
         setTranslucentStatusBar()
         setTranslucentNavigationBar()
