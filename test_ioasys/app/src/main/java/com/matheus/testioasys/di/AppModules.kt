@@ -11,6 +11,7 @@ import com.matheus.testioasys.data.repository.enterprise.EnterpriseRepository
 import com.matheus.testioasys.data.repository.enterprise.EnterprisesRepository
 import com.matheus.testioasys.data.repository.enterprise.RemoteEnterpriseProvider
 import com.matheus.testioasys.data.sharedpreferences.UserSharedPreferences
+import com.matheus.testioasys.ui.search.SearchViewModel
 import com.matheus.testioasys.ui.signin.SignInViewModel
 import com.matheus.testioasys.ui.splashscreen.SplashScreenViewModel
 import org.koin.android.ext.koin.androidContext
@@ -34,4 +35,8 @@ val splashModule = module {
 
 val signInModule = module {
     viewModel { SignInViewModel(get()) }
+}
+
+val searchModule = module {
+    viewModel { SearchViewModel(get()) }
 }

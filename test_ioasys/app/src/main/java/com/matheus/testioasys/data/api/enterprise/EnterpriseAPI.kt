@@ -15,28 +15,31 @@ class EnterpriseAPI(authRepository: AuthRepository) : EnterpriseDAO {
 
     private val httpClient = OkHttpClient.Builder().addInterceptor { chain ->
         val request =
-            chain.request()
-                .newBuilder().apply {
-                    authRepository.loadAuthData()?.let { userAuthData ->
-                        addHeader(APIConstants.ACCESS_TOKEN_KEY, userAuthData.accessToken)
-                        addHeader(APIConstants.CLIENT_KEY, userAuthData.client)
-                        addHeader(APIConstants.UID_KEY, userAuthData.uid)
-                    }
-                }
-                .build()
+                chain.request()
+                        .newBuilder().apply {
+                            authRepository.loadAuthData()?.let { userAuthData ->
+                                addHeader(APIConstants.ACCESS_TOKEN_KEY, userAuthData.accessToken)
+                                addHeader(APIConstants.CLIENT_KEY, userAuthData.client)
+                                addHeader(APIConstants.UID_KEY, userAuthData.uid)
+                            }
+                        }
+                        .build()
         chain.proceed(request)
     }.build()
     private val enterpriseService: EnterpriseService = Retrofit.Builder()
-        .baseUrl("${APIConstants.BASE_URL}/api/${APIConstants.API_VERSION}/")
-        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .client(httpClient)
-        .build()
-        .create(EnterpriseService::class.java)
+            .baseUrl("${APIConstants.BASE_URL}/api/${APIConstants.API_VERSION}/")
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .client(httpClient)
+            .build()
+            .create(EnterpriseService::class.java)
 
     override suspend fun search(query: String): List<Enterprise> =
-        withContext(Dispatchers.IO) {
-            enterpriseService.search(query).enterprises
-        }
+            withContext(Dispatchers.IO) {
+                enterpriseService.search(query).enterprises.map {
+                    it.photo = "${APIConstants.BASE_URL}${it.photo}"
+                    it
+                }
+            }
 
     override suspend fun getEnterpriseById(id: Int): Enterprise? = withContext(Dispatchers.IO) {
         enterpriseService.show(id)

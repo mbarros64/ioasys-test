@@ -60,6 +60,7 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "io.coil-kt:coil:1.0.0-rc3"
 
     //test
     testImplementation 'junit:junit:4.13.2'

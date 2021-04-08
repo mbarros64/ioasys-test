@@ -9,4 +9,6 @@ sealed class AuthException(override val message: String?): Exception(message) {
     class InvalidEmailException(message: String? = null): AuthException(message)
 
     class InvalidPasswordException(message: String? = null): AuthException(message)
+
+    class UnauthorizedException(message: String? = null): AuthException(message)
 }
