@@ -11,6 +11,7 @@ import com.matheus.testioasys.data.repository.enterprise.EnterpriseRepository
 import com.matheus.testioasys.data.repository.enterprise.EnterprisesRepository
 import com.matheus.testioasys.data.repository.enterprise.RemoteEnterpriseProvider
 import com.matheus.testioasys.data.sharedpreferences.UserSharedPreferences
+import com.matheus.testioasys.ui.enterprisedetails.EnterpriseDetailsViewModel
 import com.matheus.testioasys.ui.search.SearchViewModel
 import com.matheus.testioasys.ui.signin.SignInViewModel
 import com.matheus.testioasys.ui.splashscreen.SplashScreenViewModel
@@ -39,4 +40,9 @@ val signInModule = module {
 
 val searchModule = module {
     viewModel { SearchViewModel(get()) }
+
+}
+
+val enterpriseDetailsModule = module {
+    viewModel { EnterpriseDetailsViewModel() }
 }

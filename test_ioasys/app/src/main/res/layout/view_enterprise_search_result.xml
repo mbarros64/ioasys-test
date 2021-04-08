@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/colorEnterpriseType"
+                android:textColor="@color/colorEnterpriseDescription"
                 android:textSize="17sp"
                 android:textStyle="italic"
                 tools:text="Negócio" />
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif"
-                android:textColor="@color/colorEnterpriseType"
+                android:textColor="@color/colorEnterpriseDescription"
                 android:textSize="17sp"
                 android:textStyle="normal"
                 tools:text="Brasil" />

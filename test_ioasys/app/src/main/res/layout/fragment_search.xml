@@ -9,82 +9,70 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.matheus.testioasys.ui.common.DefaultToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/toolbar_background"
-        android:minHeight="?actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbar_content"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_ioasys_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_logo_ioasys_white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="14dp"
+            android:background="?actionBarItemBackground"
+            android:paddingHorizontal="14dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/search_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="14dp"
-                android:background="?actionBarItemBackground"
-                android:paddingHorizontal="14dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_search"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_text_input_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:theme="@style/SearchTextInputTheme"
+            android:visibility="gone"
+            app:boxStrokeColor="@color/search_input_stroke"
+            app:endIconDrawable="@drawable/ic_close"
+            app:endIconTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@android:color/white"
+            tools:visibility="visible">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/search_text_input_layout"
-                style="@style/TextInputLayoutStyle"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_text_input"
+                style="@style/SearchTextInputEditTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="14dp"
-                android:theme="@style/SearchTextInputTheme"
-                android:visibility="gone"
-                app:boxStrokeColor="@color/search_input_stroke"
-                app:endIconDrawable="@drawable/ic_close"
-                app:endIconTint="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:startIconDrawable="@drawable/ic_search"
-                app:startIconTint="@android:color/white"
-                tools:visibility="visible">
+                android:layout_height="match_parent"
+                android:backgroundTint="#00f"
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingEnd="48dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_text_input"
-                    style="@style/SearchTextInputEditTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#00f"
-                    android:hint="@string/search"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:paddingEnd="48dp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.matheus.testioasys.ui.common.DefaultToolbar>
 
     <TextView
         android:id="@+id/start_search_message"
@@ -135,5 +123,14 @@
         tools:itemCount="20"
         tools:listitem="@layout/view_enterprise_search_result"
         tools:visibility="visible" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

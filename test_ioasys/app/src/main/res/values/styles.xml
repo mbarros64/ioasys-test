@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorAppBackground</item>
     </style>
 
     <style name="SplashScreenTheme" parent="AppTheme">
@@ -42,5 +43,11 @@
 
     <style name="SearchTextInputTheme" parent="AppTheme">
         <item name="android:colorControlActivated">@color/colorWhite</item>
+    </style>
+    <style name="DescriptionText">
+        <item name="fontFamily">@font/source_sans_pro_regular</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textColor">@color/colorEnterpriseDescription</item>
     </style>
 </resources>

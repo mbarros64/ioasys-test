@@ -3,12 +3,15 @@ package com.matheus.testioasys.ui.splashscreen
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.matheus.testioasys.R
 import com.matheus.testioasys.databinding.ActivitySplashScreenBinding
 import com.matheus.testioasys.extensions.setTranslucentWindowControls
 import com.matheus.testioasys.extensions.setupFullScreenSystemUiFlags
 import com.matheus.testioasys.ui.main.MainActivity
 import com.matheus.testioasys.ui.signin.SignInActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -22,7 +25,13 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         setupFullScreenSystemUiFlags()
-        setTranslucentWindowControls(true, true)
+        setTranslucentWindowControls(
+                navigationBarColor = ContextCompat.getColor(
+                        baseContext,
+                        R.color.colorDefaultNavigationBar
+                ), withLightStatusBar = true, withLightNavigationBar = true
+        )
+
         viewBinding.root.postDelayed({
             startApp()
         }, START_DELAY)
@@ -37,6 +46,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun onFailureAuth() {
+        //startScreen(MainActivity::class.java)
         startScreen(SignInActivity::class.java)
     }
 

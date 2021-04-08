@@ -14,6 +14,7 @@ fun Activity.setupFullScreenSystemUiFlags() {
                 systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
 
+
 }
 
 fun Activity.setStatusBarColor(color: Int, withLightStatusBar: Boolean = false) {

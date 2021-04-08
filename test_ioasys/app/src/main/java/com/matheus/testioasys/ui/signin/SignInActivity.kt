@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.textfield.TextInputLayout
@@ -32,7 +33,12 @@ class SignInActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         setupFullScreenSystemUiFlags()
-        setTranslucentWindowControls(true, true)
+        setTranslucentWindowControls(
+                navigationBarColor = ContextCompat.getColor(
+                        baseContext,
+                        R.color.colorDefaultNavigationBar
+                ), withLightStatusBar = true, withLightNavigationBar = true
+        )
 
         setupRequestUpdate()
         setupPasswordEditTextToggleButton()
@@ -40,8 +46,6 @@ class SignInActivity : AppCompatActivity() {
         setupPasswordTextChanged()
         setupEnterButton()
     }
-
-    // region Setup
 
     private fun setupRequestUpdate() {
         viewModel.requestState.observe(this, {
@@ -112,8 +116,6 @@ class SignInActivity : AppCompatActivity() {
             setBlurEnabled(true)
         }
     }
-
-    // endregion
 
     private fun performAuthentication() {
         closeKeyboard()

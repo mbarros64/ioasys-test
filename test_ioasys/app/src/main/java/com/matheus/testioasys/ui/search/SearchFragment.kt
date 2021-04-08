@@ -1,23 +1,26 @@
 package com.matheus.testioasys.ui.search
 
 import android.content.Intent
+import android.graphics.Insets.add
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.matheus.testioasys.R
 import com.matheus.testioasys.data.auth.AuthException
+import com.matheus.testioasys.data.model.Enterprise
 import com.matheus.testioasys.databinding.FragmentSearchBinding
-import com.matheus.testioasys.extensions.globalSafeClickListener
-import com.matheus.testioasys.extensions.hideKeyboard
-import com.matheus.testioasys.extensions.showKeyboard
+import com.matheus.testioasys.extensions.*
+import com.matheus.testioasys.ui.enterprisedetails.EnterpriseDetailsFragment
 import com.matheus.testioasys.ui.signin.SignInActivity
 import com.matheus.testioasys.util.GlobalHelper
 import com.matheus.testioasys.util.RequestState
@@ -41,6 +44,11 @@ class SearchFragment : Fragment() {
         return viewBinding.root
     }
 
+    override fun onStart() {
+        viewBinding.container.requestApplyInsets()
+        super.onStart()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,19 +61,14 @@ class SearchFragment : Fragment() {
         setupTextChange()
         setupSearchResult()
         setupSearchResultList()
+        setupBackStackListener()
     }
 
     // region Setup
 
     private fun setupWindowInset() {
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.toolbar) { v, insets ->
-            v.updatePadding(top = v.paddingTop + insets.systemWindowInsetTop)
-            insets
-        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.searchResultList) { v, insets ->
-            v.updatePadding(bottom = v.paddingBottom + insets.systemWindowInsetBottom)
-            insets
+        viewBinding.searchResultList.doOnApplyWindowInsets { view, windowInsets, initialPadding ->
+            view.updatePadding(bottom = initialPadding.bottom + windowInsets.systemWindowInsetBottom)
         }
     }
 
@@ -116,7 +119,7 @@ class SearchFragment : Fragment() {
 
     private fun setupSearchResultList() {
         viewBinding.searchResultList.apply {
-            adapter = SearchResultAdapter().also {
+            adapter = SearchResultAdapter(::onEnterpriseSelected).also {
                 searchResultAdapter = it
             }
             itemAnimator = null
@@ -152,8 +155,20 @@ class SearchFragment : Fragment() {
             }
         })
     }
-
-    // endregion
+    private fun setupBackStackListener() {
+        childFragmentManager.addOnBackStackChangedListener {
+            if (childFragmentManager.backStackEntryCount == 0) {
+                context?.let {
+                    activity?.setTranslucentWindowControls(
+                            navigationBarColor = ContextCompat.getColor(
+                                    it,
+                                    R.color.colorDefaultNavigationBar
+                            ), withLightStatusBar = false, withLightNavigationBar = true
+                    )
+                }
+            }
+        }
+    }
 
     private fun search() {
         viewBinding.searchTextInput.text?.toString()?.let {
@@ -213,6 +228,19 @@ class SearchFragment : Fragment() {
         activity?.apply {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
+        }
+    }
+
+    private fun onEnterpriseSelected(enterprise: Enterprise) {
+        closeKeyboard()
+        childFragmentManager.commit {
+            setCustomAnimations(R.anim.slide_in_from_right, 0, 0, R.anim.slide_out_to_right)
+            add(
+                    viewBinding.container.id,
+                    EnterpriseDetailsFragment.newInstance(enterprise),
+                    EnterpriseDetailsFragment.TAG
+            )
+            addToBackStack(EnterpriseDetailsFragment.TAG)
         }
     }
 

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ee4c77</color>
-    <color name="colorPrimaryDark">#0e0531</color>
+    <color name="colorPrimaryDark">#ee4c77</color>
     <color name="colorAccent">#57bbbc</color>
     <color name="colorAppBackground">#ebe9d7</color>
+    <color name="colorDefaultNavigationBar">#80ebe9d7</color>
+    <color name="colorWhiteNavigationBar">#80FFFFFF</color>
     <color name="colorWindowControlsContrastBackground">#B3000000</color>
     <color name="colorPrimaryText">#403e4d</color>
     <color name="colorSecondaryText">#383743</color>
@@ -13,5 +15,5 @@
     <color name="colorBlurOverlay">#99ffffff</color>
     <color name="colorWhite">#fff</color>
     <color name="colorEnterpriseName">#1a0e49</color>
-    <color name="colorEnterpriseType">#8d8c8c</color>
+    <color name="colorEnterpriseDescription">#8d8c8c</color>
 </resources>
