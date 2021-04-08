@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AppEmpresas</string>
+    <string name="welcome_message">Bem-vindo ao\nEmpresas</string>
+    <string name="welcome_description">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</string>
+    <string name="password">Senha</string>
+    <string name="email">E-mail</string>
+    <string name="enter">Entrar</string>
+    <string name="error_invalid_credentials">Credenciais informadas são inválidas, tente novamente.</string>
+    <string name="error_some_error_occurred">Desculpe! Ocorreu algum erro, tente novamente.</string>
 </resources>
