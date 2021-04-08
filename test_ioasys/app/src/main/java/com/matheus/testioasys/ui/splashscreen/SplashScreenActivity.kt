@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.matheus.testioasys.databinding.ActivitySplashScreenBinding
-import com.matheus.testioasys.ui.setTranslucentWindowControls
-import com.matheus.testioasys.ui.setupFullScreenSystemUiFlags
+import com.matheus.testioasys.extensions.setTranslucentWindowControls
+import com.matheus.testioasys.extensions.setupFullScreenSystemUiFlags
 import com.matheus.testioasys.ui.signin.SignInActivity
 
 class SplashScreenActivity : AppCompatActivity() {

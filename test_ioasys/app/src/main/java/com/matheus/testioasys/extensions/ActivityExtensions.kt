@@ -1,10 +1,11 @@
-package com.matheus.testioasys.ui
+package com.matheus.testioasys.extensions
 
 import android.app.Activity
 import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 
 fun Activity.setupFullScreenSystemUiFlags() {
     window.decorView.apply {
@@ -62,4 +63,13 @@ fun Activity.setTranslucentStatusBar() {
 
 fun Activity.setTranslucentNavigationBar() {
     val addFlags = window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+
+}
+
+fun Activity.hideKeyboard() {
+    (getSystemService(Activity.INPUT_METHOD_SERVICE) as? InputMethodManager)?.let { inputMethodManager ->
+        val focusedView = currentFocus ?: View(this)
+
+        inputMethodManager.hideSoftInputFromWindow(focusedView.windowToken, 0)
+    }
 }

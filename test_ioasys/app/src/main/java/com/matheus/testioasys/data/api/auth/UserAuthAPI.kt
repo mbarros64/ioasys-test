@@ -23,7 +23,7 @@ class UserAuthAPI : UserAuth {
         withContext(Dispatchers.IO) {
             val response = userAuthService.signIn(AuthBodyRequest(email, password))
             val authResponse = response.body() ?: run {
-                throw AuthException.DefaultAuthException()
+                throw AuthException.InvalidCredentialsException("Unauthorized")
             }
 
             if (authResponse.success) {
