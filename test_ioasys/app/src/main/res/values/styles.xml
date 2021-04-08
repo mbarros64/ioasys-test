@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -10,6 +11,7 @@
         <item name="android:statusBarColor">@color/colorAppBackground</item>
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
+
     <style name="TextInputLayoutStyle">
         <item name="android:textColorHint">@color/colorSecondaryText</item>
         <item name="boxStrokeErrorColor">@color/colorRedAlert</item>
@@ -25,12 +27,20 @@
     <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textSize">0dp</item>
     </style>
-
+    
     <style name="TextInputEditTextStyle">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">0dp</item>
         <item name="android:textColor">@color/colorPrimaryText</item>
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="SearchTextInputEditTextStyle" parent="TextInputEditTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="SearchTextInputTheme" parent="AppTheme">
+        <item name="android:colorControlActivated">@color/colorWhite</item>
     </style>
 </resources>
