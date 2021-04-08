@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppEmpresas</string>
+    <string name="app_name">EmpresasIoasys</string>
     <string name="welcome_message">Bem-vindo ao\nEmpresas</string>
     <string name="welcome_description">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</string>
     <string name="password">Senha</string>
